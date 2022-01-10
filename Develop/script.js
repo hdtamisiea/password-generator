@@ -2,7 +2,7 @@
 
 
 
-// questions to user about length of the password
+// Input prompt to ask user for desired password length
 function getPasswordLength(valueEntered) {
   var promptMessage = "How long do you want your password to be?  Must be a value from 8-128.";
   if (valueEntered) {
