@@ -1,37 +1,26 @@
 // Assignment code here
 
-// function to define characters that can be used and to choose randomly
-function generatePassword() {
-  var passwordLength = getPasswordLength();
-  var selectedOptions = selectOptions();
 
-  var collectionCharacters = "";
 
-  if (selectedOptions.useLowercase) {
-    collectionCharacters += "abcdefghijklmnopqrstuvwxyz";
+// questions to user about length of the password
+function getPasswordLength(valueEntered) {
+  var promptMessage = "How long do you want your password to be?  Must be a value from 8-128.";
+  if (valueEntered) {
+    promptMessage = valueEntered + " is not from 8-128. " + promptMessage;
   }
 
-  if (selectedOptions.useUppercase) {
-    collectionCharacters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+  const defaultLength = 8;
+  var length = Number(prompt(promptMessage, defaultLength));
+  
+  // If the value is not a number or isn't between 8-128 then re run function
+  if (isNaN(length)) {
+    return defaultLength;
+  } else if (length < 8 || length > 128) {
+    return getPasswordLength(length.toString());
+  } else {
+    return length;
   }
-
-  if (selectedCharacterOptions.useNumbers) {
-    collectionCharacters += "0123456789";
-  }
-
-  if (selectedCharacterOptions.useSpecial) {
-    collectionCharacters += " !#$%&'()*+,-./:;<=>?@[]^_`{|}~";
-  }
-
-  var generatePassword = "";
-  for (var i = 0; i < passwordLength; i++) {
-    generatePassword += collectionCharacters.charAt(Math.floor(Math.random() * collectionCharacters.length));
-  }
-
-  return generatedPassword;
-
 }
-
 
 
 // Get references to the #generate element
