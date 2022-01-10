@@ -9,6 +9,20 @@ function getPasswordLength(valueEntered) {
     promptMessage = valueEntered + " is not from 8-128. " + promptMessage;
   }
 
+  // Set a default length of 9 if no input
+  const defaultLength = 9;
+  var length = Number(prompt(promptMessage, defaultLength));
+  
+  // If input is not a number or is not between 8 and 128, re run the function
+  if (isNaN(length)) {
+    return defaultLength;
+  } else if (length < 9 || length > 128) {
+    return getPasswordLength(length.toString());
+  } else {
+    return length;
+  }
+}
+
   
 
 
