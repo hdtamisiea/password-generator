@@ -1,5 +1,5 @@
 // function to generate password based on password length and characters to include
-function generatePassword () {
+function generatePassword() {
   var passwordLength = getPasswordLength();
   var selectedOptions = selectOptions();
 
@@ -32,18 +32,16 @@ function generatePassword () {
 
 // Input prompt to ask user for desired password length
 function getPasswordLength(valueEntered) {
-  var promptMessage = "How long do you want your password to be?  Must be a value from 8-128.";
+  var promptMessage = "How long do you want your password to be?  Must be a NUMBER from 8-128.";
   if (valueEntered) {
-    promptMessage = valueEntered + " is not from 8-128. " + promptMessage;
+    promptMessage = valueEntered + " is not a numerical value from 8-128. " + promptMessage;
   }
 
-  // Set a default length of 8 if no input
-  const defaultLength = 8;
-  var length = Number(prompt(promptMessage, defaultLength));
+  // If input is not a number, or is not between 8 and 128, re run the function and ask for number
+  var length = Number(prompt(promptMessage));
 
-  // If input is not a number or is not between 8 and 128, re run the function
   if (isNaN(length)) {
-    return defaultLength;
+    return getPasswordLength(length.toString());
   } else if (length < 8 || length > 128) {
     return getPasswordLength(length.toString());
   } else {
@@ -68,7 +66,6 @@ function selectOptions() {
     return confirmOptions;
   }
 }
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
