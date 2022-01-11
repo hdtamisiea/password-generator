@@ -28,19 +28,27 @@ function selectOptions() {
     useSpecial: confirm("Click OK to include SPECIAL CHARACTERS.  Click Cancel to omit this type from generated password.")
   };
 
-
-
-  // Get references to the #generate element
-  var generateBtn = document.querySelector("#generate");
-
-  // Write password to the #password input
-  function writePassword() {
-    var password = generatePassword();
-    var passwordText = document.querySelector("#password");
-
-    passwordText.value = password;
-
+  // return to character queries if none of the options are selected
+  if (!confirmOptions.useLowercase && !confirmOptions.useUppercase && !confirmOptions.useNumbers && !confirmOptions.useSpecial) {
+    alert("You must click OK for at least one of the preceding four options. Please retry.");
+    return selectOptions();
+  } else {
+    return selectOptions;
   }
+}
 
-  // Add event listener to generate button
-  generateBtn.addEventListener("click", writePassword);
+
+// Get references to the #generate element
+var generateBtn = document.querySelector("#generate");
+
+// Write password to the #password input
+function writePassword() {
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");
+
+  passwordText.value = password;
+
+}
+
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
