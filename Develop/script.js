@@ -1,7 +1,3 @@
-// Assignment code here
-
-
-
 // Input prompt to ask user for desired password length
 function getPasswordLength(valueEntered) {
   var promptMessage = "How long do you want your password to be?  Must be a value from 8-128.";
@@ -12,7 +8,7 @@ function getPasswordLength(valueEntered) {
   // Set a default length of 9 if no input
   const defaultLength = 9;
   var length = Number(prompt(promptMessage, defaultLength));
-  
+
   // If input is not a number or is not between 8 and 128, re run the function
   if (isNaN(length)) {
     return defaultLength;
@@ -23,7 +19,15 @@ function getPasswordLength(valueEntered) {
   }
 }
 
-  
+// query user as to which characters
+function selectOptions() {
+  var confirmOptions = {
+    useLowercase: confirm("Click OK to include LOWERCASE ALPHA CHARACTERS.  Click Cancel to omit this type from generated password."),
+    useUppercase: confirm("Click OK to include UPPERCASE ALPHA CHARACTERS.  Click Cancel to omit this type from generated password."),
+    useNumbers: confirm("Click OK to include NUMERICAL CHARACTERS.  Click Cancel to omit this type from generated password."),
+    useSpecial: confirm("Click OK to include SPECIAL CHARACTERS.  Click Cancel to omit this type from generated password.")
+  };
+
 
 
   // Get references to the #generate element
